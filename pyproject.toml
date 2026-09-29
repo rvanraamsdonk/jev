@@ -1,0 +1,37 @@
+[project]
+name = "jev"
+version = "0.1.0"
+description = "Playground for JEV use case experimentation"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["pydantic>=2.8"]
+
+[dependency-groups]
+dev = ["mypy>=1.11", "ruff>=0.6", "pytest>=8"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.mypy]
+strict = true
+python_version = "3.11"
+plugins = ["pydantic.mypy"]
+warn_unreachable = true
+disallow_any_explicit = true
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "N", "SIM", "RUF", "ANN", "TC", "PT"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
